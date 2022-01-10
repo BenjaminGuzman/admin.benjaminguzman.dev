@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  padding: 2rem;
+}
+
+.flex {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.max-w-4 {
+  max-width: 1rem;
+}

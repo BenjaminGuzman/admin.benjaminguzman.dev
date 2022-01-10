@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex w-full justify-around">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input [formControl]="controls.name" matInput>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Description</mat-label>
+    <textarea [formControl]="controls.description" matInput rows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Tags</mat-label>
+    <textarea [formControl]="controls.tags" matInput rows="5"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Stack</mat-label>
+    <mat-select [formControl]="controls.stack" multiple>
+      <mat-option *ngFor="let tech of technologies" [value]="tech.id">
+        <img *ngIf="tech.icon_type === 'img'"
+             src="{{tech.icon}}"
+             class="max-w-4 w-4">
+        <i *ngIf="tech.icon_type === 'class'"
+              class="{{tech.icon}}"></i>
+        {{tech.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Links (line separated)</mat-label>
+    <textarea [formControl]="controls.links" matInput rows="5"></textarea>
+    <mat-hint>name{{SEPARATOR}}url{{SEPARATOR}}icon{{SEPARATOR}}iconType</mat-hint>
+  </mat-form-field>
+  <button mat-flat-button type="submit">
+    <mat-icon matTooltip="Save changes">check</mat-icon>
+  </button>
+</form>
+<p class="w-full text-center" *ngIf="loading">Working...</p>
