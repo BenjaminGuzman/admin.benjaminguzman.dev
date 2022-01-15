@@ -64,7 +64,7 @@ export class ProjectComponent implements OnInit {
     const stackIds: string[] = this.controls.stack.value;
 
     const linksStr: string = this.controls.links.value.trim();
-    this.project.ProjectLink = linksStr.split('\n').map(l => {
+    this.project.ProjectLink = linksStr.split('\n').filter(l => l.length > 0).map(l => {
       const [name, url, icon, iconType] = l.trim().split(this.SEPARATOR);
       return {
         name: name.trim(),
