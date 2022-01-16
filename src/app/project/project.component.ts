@@ -22,6 +22,7 @@ export class ProjectComponent implements OnInit {
   public controls: {
     name: FormControl,
     description: FormControl,
+    skills: FormControl,
     tags: FormControl,
     stack: FormControl,
     links: FormControl
@@ -33,7 +34,8 @@ export class ProjectComponent implements OnInit {
       description: new FormControl(),
       tags: new FormControl(),
       stack: new FormControl(),
-      links: new FormControl()
+      links: new FormControl(),
+      skills: new FormControl()
     }
     this.form = new FormGroup(this.controls);
   }
@@ -41,6 +43,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.controls.name.setValue(this.project.name);
     this.controls.description.setValue(this.project.description);
+    this.controls.skills.setValue(this.project.skills);
     this.controls.tags.setValue(this.getTagsStr());
     this.controls.links.setValue(this.getLinksStr());
     this.supabase.getTechnologies().then(t => {
@@ -57,6 +60,7 @@ export class ProjectComponent implements OnInit {
 
     this.project.name = this.controls.name.value.trim();
     this.project.description = this.controls.description.value.trim();
+    this.project.skills = this.controls.skills.value?.trim();
 
     const tagsStr: string = this.controls.tags.value.trim();
     this.project.ProjectTag = tagsStr.split(',').map(t => ({tag: t.trim()})).filter(t => t.tag !== "");

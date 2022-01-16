@@ -47,6 +47,7 @@ export class SupabaseService {
         name,
         description,
         n_imgs,
+        skills,
         ProjectStack(
           Technology(id)
         ),
@@ -73,7 +74,8 @@ export class SupabaseService {
       .from<ProjectDB>("Project")
       .update({
         name: project.name,
-        description: project.description
+        description: project.description,
+        skills: project.skills
       })
       .eq("id", project.id);
     if (r.error) {
@@ -169,6 +171,7 @@ export interface ProjectDB {
   name: string;
   description: string;
   n_imgs: number;
+  skills: string;
   ProjectStack: {
     Technology: {
       id: string;
